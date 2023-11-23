@@ -1,4 +1,3 @@
-# spec/factories/passports.rb
 FactoryBot.define do
   factory :passport do
     passport_number { 'AB123456' }
