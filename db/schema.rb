@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_23_151124) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_24_125336) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_151124) do
     t.datetime "appointment_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "continent"
+  end
+
+  create_table "embassy_appointments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "embassy_id", null: false
+    t.datetime "appointment_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["embassy_id"], name: "index_embassy_appointments_on_embassy_id"
+    t.index ["user_id"], name: "index_embassy_appointments_on_user_id"
   end
 
   create_table "guineas", force: :cascade do |t|
@@ -55,6 +66,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_151124) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "embassy_appointments", "embassies"
+  add_foreign_key "embassy_appointments", "users"
   add_foreign_key "guineas", "users"
   add_foreign_key "passports", "users"
   add_foreign_key "passports", "users", name: "fk_passports_users", on_delete: :cascade
