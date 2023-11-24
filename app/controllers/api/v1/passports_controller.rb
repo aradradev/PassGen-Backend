@@ -32,6 +32,6 @@ class Api::V1::PassportsController < ApplicationController
   end
 
   def passport_params
-    params.permit(:passport_number, :issue_date, :expiration_date, :country)
+    params.require(:passport).permit(:passport_number, :issue_date, :expiration_date, :country)
   end
 end

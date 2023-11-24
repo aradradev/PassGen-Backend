@@ -8,6 +8,7 @@ Rails.application.routes.draw do
           member do
             post 'book_appointment', action: :book_appointment
           end
+          resources :embassy_appointments, only: [:index, :create, :show, :update]
         end
       end
     end

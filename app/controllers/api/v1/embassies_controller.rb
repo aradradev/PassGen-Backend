@@ -57,7 +57,7 @@ class Api::V1::EmbassiesController < ApplicationController
   end
 
   def embassy_params
-    params.require(:embassy).permit(:country, :name, :location, :appointment_date)
+    params.require(:embassy).permit(:country, :name, :location, :appointment_date, :continent)
   end
 
   def calculate_appointment_date
