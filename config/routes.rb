@@ -4,6 +4,11 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :create, :update, :destroy] do
         resources :passports, only: %i[index create show update]
         resources :guineas, only: %i[index create show update delete]
+        resources :embassies do
+          member do
+            post 'book_appointment', action: :book_appointment
+          end
+        end
       end
     end
   end
