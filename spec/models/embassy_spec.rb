@@ -23,7 +23,7 @@ RSpec.describe Embassy, type: :model do
   end
 
   it 'is not valid without an appointment date' do
-    embassy = FactoryBot.build(:embassy, appointment_date: nil)
+    embassy = FactoryBot.build(:embassy, :invalid_appointment_date)
     expect(embassy).not_to be_valid
   end
 end
