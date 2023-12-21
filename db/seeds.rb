@@ -2,19 +2,19 @@
 
 # Seed Users
 user = User.create!(
-  first_name: "John",
+  first_name: "Vic",
   last_name: "Doe",
   birthdate: Date.parse("1990-01-01"),
   phone_number: "123456789",
-  address: "123 Main St",
-  emergency_contact_name: "Emergency Contact",
-  emergency_contact_phone: "987654321"
+  address: "224 Matam St",
+  emergency_contact_name: "Jack Doe",
+  emergency_contact_phone: "623223331"
 )
 
 # Seed Passports
 Passport.create!(
   user: user,
-  passport_number: "AC123456",
+  passport_number: "BC123456",
   issue_date: Date.parse("2022-11-23"),
   expiration_date: Date.parse("2024-08-23"),
   country: "Guinea"
@@ -23,16 +23,25 @@ Passport.create!(
 # Seed Guineas
 Guinea.create!(
   user: user,
-  identification_document: "ID123456",
-  travel_itinerary: "Sample Travel Itinerary"
+  identification_document: "FG123421",
+  travel_itinerary: "From Guinea to Senegal"
 )
 
 # Seed Embassies
-Embassy.create!(
-  country: "Embassy Country",
-  name: "Embassy Name",
+embassy = Embassy.create!(
+  country: "Senegal",
+  name: "US Embassy",
   location: "Embassy Location",
-  appointment_date: DateTime.parse("2023-01-01 10:00:00")
+  appointment_date: DateTime.now + 1.week,
+  continent: "Africa"
 )
+
+# Seed Embassy Appointement
+EmbassyAppointment.create!(
+  user_id: user.id,
+  embassy_id: embassy.id,
+  appointment_date: embassy.appointment_date
+)
+
 
 puts "Seed data created successfully!"

@@ -1,9 +1,8 @@
-class Embassy < ApplicationRecord
-  has_many :embassy_appointments
-  has_many :users, through: :embassy_appointments
+class EmbassyAppointment < ApplicationRecord
+  belongs_to :user
+  belongs_to :embassy
 
-  validates :country, :name, :location, presence: true
-  validates :continent, presence: true
+  validates :appointment_date, presence: true
   validate :appointment_date_should_be_in_the_future
 
   def appointment_date_should_be_in_the_future
